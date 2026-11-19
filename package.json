@@ -1,0 +1,17 @@
+{
+  "name": "matematica-acessivel-stem",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Equação Acessível — conversor web 100% local de LaTeX para MathML semântico com leitura em PT-BR e folhas STEM acessíveis",
+  "license": "MIT",
+  "author": "Ferreira, A. A. (OlacDev)",
+  "homepage": "https://equacao.olacdev.com",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "serve": "node -e \"const http=require('http'),fs=require('fs'),path=require('path');const m={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'application/javascript; charset=utf-8','.svg':'image/svg+xml'};http.createServer((q,r)=>{const u=q.url.split('?')[0]==='/'?'/index.html':q.url.split('?')[0];const p=path.join(process.cwd(),path.normalize(u));if(!p.startsWith(process.cwd())){r.writeHead(403);return r.end('Forbidden');}fs.readFile(p,(e,d)=>{if(e){r.writeHead(404);return r.end('Not found');}r.writeHead(200,{'Content-Type':m[path.extname(p)]||'application/octet-stream'});r.end(d);});}).listen(8081,()=>console.log('Equacao Acessivel em http://localhost:8081'));\""
+  },
+  "keywords": ["acessibilidade", "matemática", "mathml", "latex", "stem", "leitor de tela", "wcag"],
+  "engines": { "node": ">=20" },
+  "dependencies": {},
+  "devDependencies": {}
+}

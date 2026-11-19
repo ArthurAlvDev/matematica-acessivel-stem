@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>Equação Acessível — LaTeX para MathML semântico e leitura em voz</title>
+  <meta name="description" content="Conversor gratuito e 100% local de LaTeX para MathML semântico, com leitura em PT-BR, folha STEM acessível e exportação em HTML, Markdown e relatório. Nada é enviado.">
+  <meta property="og:title" content="Equação Acessível">
+  <meta property="og:description" content="Converta LaTeX em MathML semântico com descrição falada e gere folhas STEM acessíveis — tudo no navegador.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23113a5c'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='18' fill='%23fff' text-anchor='middle'%3E%E2%88%9A%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="src/styles.css">
+  <script defer src="src/latex.js"></script>
+  <script defer src="src/mathml.js"></script>
+  <script defer src="src/sheet.js"></script>
+  <script defer src="src/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">√</span>
+      <div>
+        <h1>Equação Acessível</h1>
+        <p class="tagline">LaTeX → MathML semântico, com leitura em voz e folha STEM acessível</p>
+      </div>
+    </div>
+    <span class="privacy">100% local · nada é enviado</span>
+  </header>
+
+  <main id="main">
+    <section class="card" aria-labelledby="input-title">
+      <h2 id="input-title">1. Cole o conteúdo</h2>
+      <p class="muted">
+        Aceita Markdown simples com fórmulas entre <code>$...$</code> (no texto) e <code>$$...$$</code> (em destaque).
+        Suporta frações, raízes, potências, subscritos, gregas, somatório, integral e funções.
+      </p>
+
+      <label for="source">Conteúdo da folha</label>
+      <textarea id="source" rows="12" spellcheck="false"></textarea>
+
+      <div class="row wrap">
+        <button type="button" id="btn-sample" class="primary">Carregar exemplo</button>
+        <button type="button" id="btn-convert" class="ghost">Converter</button>
+        <button type="button" id="btn-clear" class="ghost">Limpar</button>
+      </div>
+
+      <p id="status" class="status" role="status" aria-live="polite" data-kind="info"></p>
+    </section>
+
+    <section id="results" hidden>
+      <section class="card" aria-labelledby="stats-title">
+        <h2 id="stats-title">2. Resumo</h2>
+        <div class="stats">
+          <div class="stat"><span class="value" id="stat-equations">–</span><span class="label">equações</span></div>
+          <div class="stat"><span class="value" id="stat-inline">–</span><span class="label">fórmulas no texto</span></div>
+          <div class="stat"><span class="value" id="stat-blocks">–</span><span class="label">blocos</span></div>
+          <div class="stat"><span class="value" id="stat-errors">–</span><span class="label">erros de sintaxe</span></div>
+        </div>
+        <div id="errors" class="errors" hidden></div>
+      </section>
+
+      <section class="card" aria-labelledby="preview-title">
+        <h2 id="preview-title">3. Pré-visualização acessível</h2>
+        <p class="muted small">A folha abaixo usa MathML com <code>alttext</code> e anotação de fala. Leitores de tela com suporte a MathML leem a estrutura; os demais usam o texto alternativo.</p>
+        <iframe id="preview" class="preview" title="Pré-visualização da folha acessível" sandbox=""></iframe>
+      </section>
+
+      <section class="card" aria-labelledby="equations-title">
+        <h2 id="equations-title">4. MathML por equação</h2>
+        <div id="equations" class="equations"></div>
+      </section>
+
+      <section class="card" aria-labelledby="export-title">
+        <h2 id="export-title">5. Exportar</h2>
+        <div class="row wrap">
+          <button type="button" id="btn-html" class="primary">Folha .html</button>
+          <button type="button" id="btn-md" class="ghost">Folha .md</button>
+          <button type="button" id="btn-report" class="ghost">Relatório .md</button>
+          <button type="button" id="btn-copy" class="ghost">Copiar relatório</button>
+        </div>
+        <p class="muted small">O HTML exportado é autônomo: abre em qualquer navegador e mantém o MathML e as leituras.</p>
+      </section>
+    </section>
+
+    <section class="card prose" aria-labelledby="help-title">
+      <h2 id="help-title">Sintaxe suportada</h2>
+      <ul>
+        <li><code>\frac{a}{b}</code>, <code>\sqrt{x}</code>, <code>\sqrt[3]{x}</code>, <code>x^2</code>, <code>a_i</code>, <code>x_i^2</code></li>
+        <li>Gregas: <code>\alpha</code> … <code>\Omega</code>; relações: <code>\le</code>, <code>\ge</code>, <code>\neq</code>, <code>\approx</code>, <code>\in</code></li>
+        <li>Grandes operadores: <code>\sum</code>, <code>\prod</code>, <code>\int</code>; funções: <code>\sin</code>, <code>\cos</code>, <code>\log</code>, <code>\ln</code></li>
+        <li>Texto dentro da fórmula: <code>\text{km/h}</code>; acentos: <code>\vec{v}</code></li>
+      </ul>
+      <p class="muted small">Ambientes como <code>matrix</code> e <code>cases</code> não são suportados nesta versão — o erro aparece na lista com a linha exata.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Feito para professores, estudantes e equipes que produzem material STEM acessível.</p>
+    <p class="muted small">Made by OlacDev · <a href="https://olacdev.com/" rel="noopener">olacdev.com</a></p>
+  </footer>
+</body>
+</html>

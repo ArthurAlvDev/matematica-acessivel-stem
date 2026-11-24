@@ -74,8 +74,8 @@ O HTML gerado é exibido em `iframe` com `sandbox=""`, sem permissão de script.
 
 | Arquivo | Foco | Testes |
 | --- | --- | --- |
-| `latex.test.js` | precedência, implícita, potência/subscrito, fração, raiz, gregas, relações, funções, erros | 24 |
-| `mathml.test.js` | estrutura MathML, `semantics`, `alttext`, escapes, fala, forma linear | 20 |
+| `latex.test.js` | precedência, implícita, potência/subscrito, fração, raiz, gregas, relações, funções, erros | 23 |
+| `mathml.test.js` | estrutura MathML, `semantics`, `alttext`, escapes, fala, forma linear | 19 |
 | `sheet.test.js` | blocos, `$$` multilinha, erros por linha, HTML, Markdown, relatório, escape de HTML | 14 |
 | `page.test.js` | integridade de arquivos, rótulos, sandbox, CSP, créditos, exemplo embutido | 9 |
 
@@ -104,8 +104,6 @@ Conversores LaTeX→MathML consolidados (por exemplo, MathJax e KaTeX no modo Ma
 O Equação Acessível mostra que a distância entre escrever em LaTeX e publicar material STEM acessível pode ser percorrida no navegador, com regras explícitas, sem servidores e sem custo de infraestrutura. O produto não substitui a revisão do autor: entrega a estrutura correta, uma leitura plausível e um caminho de correção visível. Como continuação, prevê-se suporte a ambientes matriciais, edição do `alttext` na interface, testes com leitores de tela reais e um estudo de uso com professores de matemática e física.
 
 ## Referências
-
-ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. **NBR 15290**: Acessibilidade em comunicação na televisão. Rio de Janeiro: ABNT, 2005.
 
 BRASIL. **Lei nº 13.146, de 6 de julho de 2015**. Institui a Lei Brasileira de Inclusão da Pessoa com Deficiência. Brasília, DF, 2015.
 
